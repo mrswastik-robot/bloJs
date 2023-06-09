@@ -33,6 +33,10 @@ const profile = () => {
         return unsubscribe;
     };
 
+    useEffect(() => {
+        getUserData();
+    }, [user, loading]);
+
 
 
   return (

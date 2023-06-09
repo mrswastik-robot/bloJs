@@ -1,9 +1,18 @@
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import {auth} from "../../utils/firebase";
+import {auth, db} from "../../utils/firebase";
 import {useRouter} from 'next/router';
 import {useAuthState} from "react-firebase-hooks/auth";
 import { useEffect } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+  getDoc,
+  getDocs
+} from "firebase/firestore";
 
 export default function Login() {
 
@@ -30,6 +39,39 @@ export default function Login() {
             route.push("/");
         }else{console.log("WAtch at 42min....isse ho ye raha ki if user is alrady logged in to / pe lekr jao taaki logged in user /auth/login pe jaane ka try kre to use na jaane do...")}
     }, [user]);
+
+
+    useEffect(() => {
+      if (user) {
+        const createUserDocument = async () => {
+          const userRef = collection(db, "users");
+          const querySnapshot = await getDocs(userRef);
+          const userExists = querySnapshot.docs.some(
+            (doc) => doc.data().uid === user.uid
+          );
+  
+          if (!userExists) {
+            try {
+              await addDoc(userRef, {
+                uid: user.uid,
+                email: user.email,
+                name: user.displayName,
+                photoURL: user.photoURL,
+                bio: "",
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+              });
+            } catch (error) {
+              console.error("Error creating user document:", error);
+            }
+          }
+        };
+  
+        createUserDocument();
+      }
+    }, [user]);
+
+
 
 
 
