@@ -1,1 +1,1 @@
-# being-kreatibh
+# creating a blogging website for Jaypee students.
