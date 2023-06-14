@@ -1,47 +1,71 @@
-import React from 'react'
-
+import React from 'react';
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { async } from "@firebase/util";
+import Router, { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import {
+  addDoc,
   collection,
-  deleteDoc,
   doc,
-  onSnapshot,
-  query,
-  where,
+  serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 
-const profile = () => {
+const editProfile = () => {
 
-    const route = useRouter();
-    const [user, loading] = useAuthState(auth);
-    const [userData , setUserData] = useState([]);
+  const route = useRouter();
+  const routeData = route.query;
 
-    const getUserData = async () => {
+  const [user, loading] = useAuthState(auth);
+  const [userBio, setUserBio] = useState({bio: ""});
 
-        if (loading) return;
-        if (!user) return route.push("/auth/login");
+  const submitBio = async (e) => {
+    e.preventDefault();
 
-        const collectionRef = collection(db, "users");
-        const q = query(collectionRef, where("user", "==", user.uid));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            setUserData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        });
-        return unsubscribe;
-    };
+    if(userBio?.hasOwnProperty("id"))
+    {
+      const docRef = doc(db, 'users', userBio.id);
+      const updatedDoc = {...userBio, timestamp: serverTimestamp() };
+      await updateDoc(docRef, updatedDoc);  
+      return route.push('/dashboard');
+    }
+  };
 
-    useEffect(() => {
-        getUserData();
-    }, [user, loading]);
+
+  const checkUser = () => {
+    if (loading) return;
+    if (!user) return route.push("/auth/login");
+
+    if(routeData.id)
+    {
+      setUserBio({bio: routeData.bio, id: routeData.id});
+    }
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, [user, loading]);
 
 
 
   return (
-    <div>profile</div>
+    <div>
+      <input
+            onChange={(e) => setUserBio({...userBio, bio: e.target.value})}
+            type="text"
+            value={userBio.bio}
+            placeholder="Write your new Bio...😀"
+            className="bg-gray-800 w-full p-2 text-white text-sm"
+          />
+          <button
+            onClick={submitBio}
+            className="bg-cyan-500 text-white py-2 px-4 text-sm"
+          >
+            Submit
+          </button>
+    </div>
   )
+
 }
 
-export default profile
+export default editProfile

@@ -15,22 +15,33 @@ import Message from "../components/message";
 import { BsTrash2Fill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 import Link from "next/link";
+import ProfileSection from "../components/profileSection";
 
 export default function Dashboard() {
   const route = useRouter();
   const [user, loading] = useAuthState(auth);
   const [yourPosts, setYourPosts] = useState([]);
+  const [userInfo, setUserInfo] = useState([]);
 
   const getData = async () => {
     if (loading) return;
     if (!user) return route.push("/auth/login");
 
+    // getting all the user specific posts
     const collectionRef = collection(db, "posts");
     const q = query(collectionRef, where("user", "==", user.uid));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setYourPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
-    return unsubscribe;
+
+    // getting user info
+    const collectionRef2 = collection(db, "users");
+    const q2 = query(collectionRef2, where("uid", "==", user.uid));
+    const unsubscribe2 = onSnapshot(q2, (snapshot) => {
+      setUserInfo(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      // console.log(userInfo);
+    });
+    return unsubscribe, unsubscribe2;
   };
 
 
@@ -48,6 +59,28 @@ export default function Dashboard() {
 
   return (
     <div>
+      <div>
+
+          <h1>Your Profile</h1>
+          {userInfo.map((user) => {
+            return (
+              <ProfileSection
+                {...user}
+                key={user.id} >
+                <Link href={{ pathname: "/profile" , query:user}}>
+                  <button className="text-orange-600 flex items-center justify-center gap-2 py-2 text-sm">
+                    <AiFillEdit className="text-2xl" />
+                    Edit
+                  </button>
+                </Link>
+              </ProfileSection>
+              
+            );
+          }
+          )}
+
+      </div>
+     
       <h1>Your Posts</h1>
       <div>
         {yourPosts.map((post) => {

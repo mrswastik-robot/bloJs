@@ -11,7 +11,8 @@ import {
   serverTimestamp,
   updateDoc,
   getDoc,
-  getDocs
+  getDocs,
+  setDoc
 } from "firebase/firestore";
 
 export default function Login() {
@@ -41,23 +42,54 @@ export default function Login() {
     }, [user]);
 
 
+    // useEffect(() => {
+    //   if (user) {
+    //     const createUserDocument = async () => {
+    //       const userRef = collection(db, "users");
+    //       const querySnapshot = await getDocs(userRef);
+    //       const userExists = querySnapshot.docs.some(
+    //         (doc) => doc.data().uid === user.uid
+    //       );
+  
+    //       if (!userExists) {
+    //         try {
+    //           await addDoc(userRef, {
+    //             uid: user.uid,
+    //             email: user.email,
+    //             name: user.displayName,
+    //             photoURL: user.photoURL,
+    //             bio: "",
+    //             createdAt: serverTimestamp(),
+    //             updatedAt: serverTimestamp(),
+    //           });
+    //         } catch (error) {
+    //           console.error("Error creating user document:", error);
+    //         }
+    //       }
+    //     };
+  
+    //     createUserDocument();
+    //   }
+    // }, [user]);
+
+
+
+
+
     useEffect(() => {
       if (user) {
         const createUserDocument = async () => {
-          const userRef = collection(db, "users");
-          const querySnapshot = await getDocs(userRef);
-          const userExists = querySnapshot.docs.some(
-            (doc) => doc.data().uid === user.uid
-          );
+          const userRef = doc(db, "users", user.uid);
+          const docSnapshot = await getDoc(userRef);
   
-          if (!userExists) {
+          if (!docSnapshot.exists()) {
             try {
-              await addDoc(userRef, {
+              await setDoc(userRef, {
                 uid: user.uid,
                 email: user.email,
                 name: user.displayName,
                 photoURL: user.photoURL,
-                bio: "",
+                bio: "Hey there! I am using bloJs...",
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
               });
