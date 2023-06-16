@@ -50,19 +50,23 @@ const editProfile = () => {
 
   return (
     <div>
-      <input
-            onChange={(e) => setUserBio({...userBio, bio: e.target.value})}
-            type="text"
-            value={userBio.bio}
-            placeholder="Write your new Bio...😀"
-            className="bg-gray-800 w-full p-2 text-white text-sm"
-          />
-          <button
-            onClick={submitBio}
-            className="bg-cyan-500 text-white py-2 px-4 text-sm"
-          >
-            Submit
-          </button>
+      <div className=' flex gap-2'>
+
+          <input
+                onChange={(e) => setUserBio({...userBio, bio: e.target.value})}
+                type="text"
+                value={userBio.bio}
+                placeholder="Write your new Bio...😀"
+                className="bg-gray-800 w-full p-2 text-white text-sm"
+              />
+              <button
+                onClick={submitBio}
+                className="bg-cyan-500 text-white py-2 px-4 text-sm"
+              >
+                Submit
+              </button>
+      </div>
+      
     </div>
   )
 

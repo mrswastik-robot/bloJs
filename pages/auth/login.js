@@ -92,6 +92,9 @@ export default function Login() {
                 bio: "Hey there! I am using bloJs...",
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
+                github:"",
+                linkedin:"",
+                instagram:"",
               });
             } catch (error) {
               console.error("Error creating user document:", error);
