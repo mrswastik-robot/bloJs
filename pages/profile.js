@@ -19,6 +19,13 @@ const editProfile = () => {
   const [user, loading] = useAuthState(auth);
   const [userBio, setUserBio] = useState({bio: ""});
 
+  
+  // const [github, setGithub] = useState("");
+  // const [linkedin, setLinkedin] = useState("");
+  // const [instagram, setInstagram] = useState("");
+
+  const [link, setLinks] = useState({github: "", linkedin: "", instagram: ""});
+
   const submitBio = async (e) => {
     e.preventDefault();
 
@@ -31,6 +38,19 @@ const editProfile = () => {
     }
   };
 
+  const handleLinks = async (e) => {
+    e.preventDefault();
+
+    if(link?.hasOwnProperty("id"))
+    {
+      const docRef = doc(db, 'users', link.id);
+      const updatedDoc = {...link, timestamp: serverTimestamp() };
+      await updateDoc(docRef, updatedDoc);  
+      return route.push('/dashboard');
+    }
+    
+  }
+
 
   const checkUser = () => {
     if (loading) return;
@@ -39,6 +59,7 @@ const editProfile = () => {
     if(routeData.id)
     {
       setUserBio({bio: routeData.bio, id: routeData.id});
+      setLinks({github: routeData.github, linkedin: routeData.linkedin, instagram: routeData.instagram, id: routeData.id});
     }
   };
 
@@ -65,6 +86,40 @@ const editProfile = () => {
               >
                 Submit
               </button>
+      </div>
+
+      <div>
+        <h1 className=' font-extrabold mt-2'>Links :-</h1>
+        <form className=' flex-col space-y-3 mt-2'>
+          <input onChange={(e) => setLinks({...link, github: e.target.value})}
+          className="bg-gray-800 w-full p-2 text-white text-sm rounded-lg"
+          placeholder='Github'
+          value={link.github}
+          />
+
+          <input onChange={(e) => setLinks({...link, linkedin: e.target.value})}
+          className="bg-gray-800 w-full p-2 text-white text-sm rounded-lg"
+          placeholder='Linkedin'
+          value={link.linkedin}
+          />
+
+          <input onChange={(e) => setLinks({...link, instagram: e.target.value})}
+          className="bg-gray-800 w-full p-2 text-white text-sm rounded-lg"
+          placeholder='Instagram'
+          value={link.instagram}
+          />
+
+          <button
+            onClick={handleLinks}
+            type='submit'
+            className="bg-cyan-500 text-white py-2 px-4 text-sm rounded-lg"
+            >
+              Submit
+
+          </button>
+
+        </form>
+
       </div>
       
     </div>
