@@ -1,7 +1,7 @@
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Router, { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useRef} from "react";
 import {
   addDoc,
   collection,
@@ -11,12 +11,21 @@ import {
 } from "firebase/firestore";
 
 import { toast } from "react-toastify";
+// import JoditEditor from "jodit-react";
+import dynamic from "next/dynamic";
+const JoditEditor = dynamic(() => import("jodit-react").then((mod) => mod.default), {
+  ssr: false, // Prevents the Jodit editor from being rendered on the server
+});
+
+import sanitizeHtml from "sanitize-html";
 
 export default function Post() {
   const [post, setPost] = useState({ description: "" });
   const [user, loading] = useAuthState(auth);
   const route = useRouter();
   const routeData = route.query;
+
+  const editor = useRef(null);
 
   //Submit Post
   const submitPost = async (e) => {
@@ -90,6 +99,13 @@ export default function Post() {
   },[user, loading]);
 
 
+  // Sanitize the HTML content before displaying it
+  const sanitizedDescription = sanitizeHtml(post.description, {
+    allowedTags: [], // Allow no tags
+    allowedAttributes: {}, // Allow no attributes
+  });
+
+
 
 
   return (
@@ -100,11 +116,15 @@ export default function Post() {
         </h1>
         <div className="py-2">
           <h3 className="text-lg font-medium py-2">Description</h3>
-          <textarea
+          <JoditEditor
+            ref={editor}
             value={post.description}
-            onChange={(e) => setPost({ ...post, description: e.target.value })}
-            className="bg-gray-800 h-48 w-full text-white rounded-lg p-2 text-sm"
-          ></textarea>
+            // onChange={(e) => setPost({ ...post, description: e.target.value })}
+            onBlur={(newContent) =>
+              setPost({ ...post, description: newContent })
+            } // preferred to use only this option to update the content for performance reasons
+            className="bg-gray-800 h-48 w-full text-black rounded-lg p-2 text-sm"
+          ></JoditEditor>
           <p
             className={`text-cyan-600 font-medium text-sm ${
               post.description.length > 300 ? "text-red-600" : ""
@@ -118,6 +138,12 @@ export default function Post() {
           Submit
         </button>
       </form>
+
+      {/* <div
+        dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+      /> */}
+
+      
     </div>
   );
 }

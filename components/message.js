@@ -1,3 +1,5 @@
+import ReactHtmlParser from 'html-react-parser';
+
 export default function Message({ children, avatar, username, description }) {
     return (
       <div className="bg-white p-8 border-b-2 rounded-lg">
@@ -6,7 +8,7 @@ export default function Message({ children, avatar, username, description }) {
           <h2>{username}</h2>
         </div>
         <div className="py-4">
-          <p>{description}</p>
+          {ReactHtmlParser(description)}
         </div>
         {children}
       </div>
