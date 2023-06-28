@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { db } from "../utils/firebase";
-import { doc, getDoc, where , collection, query, getDocs} from "firebase/firestore";
+import { doc, getDoc, where , collection, query, orderBy,getDocs} from "firebase/firestore";
 
 import ProfileSection from '../components/profileSection';
 import Message from '../components/message';
@@ -26,7 +26,7 @@ export default function ProfilePage() {
 
         //getting that user's posts
         const postsCollectionRef = collection(db, 'posts');
-        const postsQuery = query(postsCollectionRef, where('user', '==', user));
+        const postsQuery = query(postsCollectionRef, where('user', '==', user), orderBy('timestamp', 'desc'));
         const postsSnapshot = await getDocs(postsQuery);
 
         const userPostsData = postsSnapshot.docs.map((doc) => ({

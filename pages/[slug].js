@@ -14,6 +14,8 @@ import {
     updateDoc,
   } from "firebase/firestore";
 
+  import BlogContent from "../components/blogContent";
+
 export default function CommentSection(){
 
     const router = useRouter();
@@ -71,7 +73,11 @@ export default function CommentSection(){
 
   return (
     <div>
-      <Message {...routeData}></Message>
+
+      {/* <Message {...routeData}></Message> */}
+      <BlogContent {...routeData}></BlogContent>
+
+
       <div className="my-4">
         <div className="flex">
           <input

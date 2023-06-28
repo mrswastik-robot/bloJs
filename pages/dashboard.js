@@ -8,6 +8,7 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  orderBy,
   query,
   where,
 } from "firebase/firestore";
@@ -29,7 +30,7 @@ export default function Dashboard() {
 
     // getting all the user specific posts
     const collectionRef = collection(db, "posts");
-    const q = query(collectionRef, where("user", "==", user.uid));
+    const q = query(collectionRef, where("user", "==", user.uid) , orderBy("timestamp" , "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setYourPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });

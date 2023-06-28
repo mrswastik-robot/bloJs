@@ -40,7 +40,7 @@ export default function Post() {
       });
       return;  //yaha pr jabbhi error aa raha tab return krna jarrori isse ho ye raha ki submitpost fun. end ho jaa raha , return nhi krte to codeflow neeche collectionref ki taraf bhi jata aur firebase me collection tabbhi ban jata.(Watch at 1:19)
     }
-    if (post.description.length > 300) {
+    if (post.description.length > 30000) {
       toast.error("Description too long 😅", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500,
@@ -152,10 +152,10 @@ export default function Post() {
           ></JoditEditor>
           <p
             className={`text-cyan-600 font-medium text-sm ${
-              post.description.length > 300 ? "text-red-600" : ""
+              post.description.length > 30000 ? "text-red-600" : ""
             }`}
           >
-            {post.description.length}/300
+            {post.description.length}/30000
           </p>
         </div>
         <button type="submit"
