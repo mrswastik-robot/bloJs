@@ -20,7 +20,7 @@ const JoditEditor = dynamic(() => import("jodit-react").then((mod) => mod.defaul
 import sanitizeHtml from "sanitize-html";
 
 export default function Post() {
-  const [post, setPost] = useState({ description: "" });
+  const [post, setPost] = useState({ description: "" , title: "", mainImage: "" });
   const [user, loading] = useAuthState(auth);
   const route = useRouter();
   const routeData = route.query;
@@ -33,7 +33,7 @@ export default function Post() {
 
 
     //Run checks for description
-    if (!post.description) {
+    if (!post.description || !post.title || !post.mainImage) {
       toast.error("Description Field empty 😅", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500,
@@ -69,7 +69,7 @@ export default function Post() {
       avatar: user.photoURL,
       username: user.displayName,
     });
-    setPost({ description: "" });
+    setPost({ description: "" , title: "", mainImage: ""});
     toast.success("Post has been made 🚀", {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 1500,
@@ -89,7 +89,7 @@ export default function Post() {
     //pr abhi bhi ek dikkat , edit ho jaa raha pr jab submit kr rhe to ek naya post ban jaa raha , apan ko database ka wo specific doc update krna hain na to iska code make a new post k upar hain Watch at 2:04
     if(routeData.id)
     {
-      setPost({description: routeData.description , id: routeData.id});
+      setPost({description: routeData.description, title:routeData.title, mainImage:routeData.mainImage , id: routeData.id});
     }
   };
 
@@ -115,6 +115,31 @@ export default function Post() {
           {post.hasOwnProperty("id") ? "Edit your Post" : "Create your post"}
         </h1>
         <div className="py-2">
+
+          <h3 className="text-lg font-medium py-2">Title</h3>
+
+          <input
+            type="text"
+            className="bg-gray-800 w-full text-white rounded-lg p-2 text-sm"
+            placeholder="Title"
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
+
+          />
+
+          <h3 className="text-lg font-medium py-2">Main Image URL</h3>
+
+          <input
+            type="text"
+            className="bg-gray-800 w-full text-white rounded-lg p-2 text-sm"
+            placeholder="Main Image URL"
+            value={post.mainImage}
+            onChange={(e) => setPost({ ...post, mainImage: e.target.value })}
+
+          />
+
+
+
           <h3 className="text-lg font-medium py-2">Description</h3>
           <JoditEditor
             ref={editor}
