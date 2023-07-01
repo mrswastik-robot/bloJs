@@ -1,27 +1,49 @@
 import ReactHtmlParser from 'html-react-parser';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 
-export default function Message({ children, avatar, username, description, user , title, mainImage , id}) {
+export default function Message({ children, avatar, username, description, user , title, mainImage , id , timestamp}) {
 
   const truncateDiscription = (string, maxLength) => {
     const words = string.split(' ');
     if (words.length > maxLength) {
-      return words.slice(0, maxLength).join(' ') + '...';
+      return words.slice(0, maxLength).join(' ') + '...Read more';
     }
     return string;
   };
 
+  const formattedTimestamp = new Date(timestamp.seconds * 1000).toLocaleDateString(undefined, {
+    day: 'numeric',
+    month: 'numeric', 
+    hour: 'numeric',
+    minute: 'numeric',
+    weekday: 'long'
+  });
+
+  const { theme, setTheme } = useTheme();
+
+
 
     return (
-      <div className="bg-white p-8 border-b-2 rounded-lg">
-        <div className="flex items-center gap-2">
-          <img src={avatar} className="w-10 rounded-full" />
-          <Link href={`/profilepage?user=${user}`}>   
-          {/* //I want my user to go to the [profile].js page */}
-              <h2 className=' cursor-pointer hover:underline'>{username}</h2>
-          </Link>
-          
+      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200`}>
+        <div className=' lg:flex lg:gap-[16rem] '>
+
+          <div className="flex items-center gap-2">
+            <img src={avatar} className="w-10 rounded-full" />
+            <Link href={`/profilepage?user=${user}`}>   
+            {/* //I want my user to go to the [profile].js page */}
+                <h2 className=' cursor-pointer hover:underline'>{username}</h2>
+            </Link>
+            
+          </div>
+
+          <div className=' mt-3 text-xs text-opacity-40 font-extralight  sm:ml-5'>
+            <p>{formattedTimestamp}</p>
+          </div>
+
         </div>
+        
+
         <div className="py-4">
           
         <Link href={{pathname: `/${id}` , query: {avatar, username, description, user , title, mainImage ,id}}}>

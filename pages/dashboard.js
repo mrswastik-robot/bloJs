@@ -60,18 +60,18 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div>
+      <div className=" mt-2 ">
 
-          <h1>Your Profile</h1>
+          <h1 className=" font-semibold ">Your Profile</h1>
           {userInfo.map((user) => {
             return (
               <ProfileSection
                 {...user}
                 key={user.id} >
                 <Link href={{ pathname: "/profile" , query:user}}>
-                  <button className="text-orange-600 flex items-center justify-center gap-2 py-2 text-sm">
-                    <AiFillEdit className="text-2xl" />
-                    Edit
+                  <button className="text-cyan-500 flex items-center justify-center gap-2 py-2 text-sm hover:underline cursor-pointer">
+                    <AiFillEdit className="text-2xl " />
+                    Edit Your Profile
                   </button>
                 </Link>
               </ProfileSection>
@@ -82,7 +82,7 @@ export default function Dashboard() {
 
       </div>
      
-      <h1>Your Posts</h1>
+      <h1 className=" mt-2 font-semibold">Your Posts</h1>
       <div>
         {yourPosts.map((post) => {
           return (

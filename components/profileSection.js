@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import { ImGithub, ImLinkedin, ImInstagram } from "react-icons/im";
 
+import { useTheme } from "next-themes";
+
 export default function ProfileSection({
   children,
   name,
@@ -11,11 +13,15 @@ export default function ProfileSection({
   linkedin,
   instagram,
 }) {
+
+  const { theme, setTheme } = useTheme();
+
+
   return (
-    <div className=" bg-white p-8 border-b-2 rounded-lg">
+    <div className={` ${theme === 'dark' ? "dark:bg-[#d6ff0a] text-black" : "bg-white"} p-8 border-b-2 rounded-lg`}>
       {/* <h1>hilla hila re hulle hulle</h1> */}
       <div className=" flex items-center justify-center gap-8">
-        <h1 className=" text-black">{bio}</h1>
+        <h1>{bio}</h1>
         <img src={photoURL} className="w-15 rounded-full" />
         <h2>{name}</h2>
       </div>
