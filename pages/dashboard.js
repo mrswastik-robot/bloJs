@@ -69,7 +69,7 @@ export default function Dashboard() {
                 {...user}
                 key={user.id} >
                 <Link href={{ pathname: "/profile" , query:user}}>
-                  <button className="text-cyan-500 flex items-center justify-center gap-2 py-2 text-sm hover:underline cursor-pointer">
+                  <button className="text-cyan-500 dark:text-black flex items-center justify-center gap-2 py-2 text-sm hover:underline cursor-pointer">
                     <AiFillEdit className="text-2xl " />
                     Edit Your Profile
                   </button>

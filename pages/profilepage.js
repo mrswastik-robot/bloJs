@@ -52,7 +52,7 @@ export default function ProfilePage() {
     return <div>Loading...</div>;
   }
 
-  const { github, linkedin, instagram, bio } = userData;
+  const { github, linkedin, instagram, bio , name } = userData;
 
 
 
@@ -65,9 +65,12 @@ export default function ProfilePage() {
       <p>Instagram: {instagram}</p>
       <p>Bio: {bio}</p> */}
 
+
       <ProfileSection {...userData}>
 
       </ProfileSection>
+
+      <h1 className=' text-center my-4 font-semibold'>More from {name}</h1>
 
       {userPosts.map((post) => {
         return (

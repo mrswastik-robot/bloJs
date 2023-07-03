@@ -11,7 +11,7 @@ const blogContent = ({ children, avatar, username, description, user , title, ma
           <img src={avatar} className="w-10 rounded-full" />
           <Link href={`/profilepage?user=${user}`}>   
           {/* //I want my user to go to the [profile].js page */}
-              <h2>{username}</h2>
+              <h2 className=' cursor-pointer hover:underline'>{username}</h2>
           </Link>
           
         </div>

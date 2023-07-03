@@ -25,7 +25,7 @@ export default function Message({ children, avatar, username, description, user 
 
 
     return (
-      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200`}>
+      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200 `}>
         <div className=' lg:flex lg:gap-[16rem] '>
 
           <div className="flex items-center gap-2">
@@ -51,7 +51,7 @@ export default function Message({ children, avatar, username, description, user 
           <div className=' mb-5 card grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-1 justify-items-center mx-auto my-auto'>
 
             <div className='  grid-rows-2 gap-1 lg:grid-rows-2 lg:gap-2 my-auto mx-auto'>
-              <h3 className="text-3xl font-bold py-2 font-poppins">{title}</h3>
+              <h3 className="text-3xl font-bold py-2 font-poppins ">{title}</h3>
               {typeof description === 'string' ? ReactHtmlParser(truncateDiscription(description,30)) : truncateDiscription(description, 30)}
             </div>
 
