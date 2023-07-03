@@ -12,13 +12,13 @@ export default function Message({ children, avatar, username, description, user 
     return string;
   };
 
-  const formattedTimestamp = new Date(timestamp.seconds * 1000).toLocaleDateString(undefined, {
+  const formattedTimestamp = timestamp ? new Date(timestamp.seconds * 1000).toLocaleDateString(undefined, {
     day: 'numeric',
     month: 'numeric', 
     hour: 'numeric',
     minute: 'numeric',
     weekday: 'long'
-  });
+  }) : '';
 
   const { theme, setTheme } = useTheme();
 

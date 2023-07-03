@@ -5,6 +5,8 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
+import AnimatedSvg from "./animatedSvg";
+
 
 function Nav()
 {
@@ -32,7 +34,15 @@ function Nav()
 
             <ul className="flex items-center gap-10">
 
-                {currentTheme === "dark" ? (
+            <AnimatedSvg
+          currentTheme={currentTheme}
+          onClick={() =>
+            currentTheme === "dark" ? setTheme("light") : setTheme("dark")
+          }
+        />
+
+
+                {/* {currentTheme === "dark" ? (
                     <button
                     className="bg-black-700 hover:bg-black w-28 rounded-md border-cyan-500 border-2 p-4"
                     onClick={() => setTheme("light")}
@@ -49,7 +59,7 @@ function Nav()
                         Dark Mode
                     </button>
                 )
-                }
+                } */}
 
                 {!user && (
                 <Link href={"/auth/login"}>
