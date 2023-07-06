@@ -62,7 +62,7 @@ export default function Dashboard() {
     <div>
       <div className=" mt-2 ">
 
-          <h1 className=" font-semibold ">Your Profile</h1>
+          <h1 className=" font-semibold font-space mb-2">Your Profile</h1>
           {userInfo.map((user) => {
             return (
               <ProfileSection
@@ -82,7 +82,7 @@ export default function Dashboard() {
 
       </div>
      
-      <h1 className=" mt-2 font-semibold">Your Posts</h1>
+      <h1 className=" my-5 font-semibold font-space ">Your Posts :</h1>
       <div>
         {yourPosts.map((post) => {
           return (
@@ -106,7 +106,7 @@ export default function Dashboard() {
           );
         })}
       </div>
-      <button onClick={() => auth.signOut()} className="font-medium bg-cyan-500 text-white py-2 px-4 rounded-lg textx-sm">Sign Out</button>
+      <button onClick={() => auth.signOut()} className="font-medium bg-red-600 text-white py-2 px-4 rounded-lg textx-sm my-7">Sign Out</button>
     </div>
   );
 }

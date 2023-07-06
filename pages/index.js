@@ -4,6 +4,7 @@ import { useEffect , useState } from 'react';
 import {db} from "../utils/firebase";
 import { collection, onSnapshot ,orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
+import {FaComments} from 'react-icons/fa';
 
 
 export default function Home() {
@@ -38,12 +39,13 @@ export default function Home() {
       </Head>
 
       <div className="my-12 text-lg font-medium">
-        <h2>See what other people are saying</h2>
+        <h2 className=' font-space font-semibold mb-5'>See what other people are blogging about :-</h2>
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
             <Link href={{pathname: `/${post.id}` , query: {...post}}}>
               <button>
-                {post.comments?.length > 0 ? post.comments?.length : 0} comments
+                {/* {post.comments?.length > 0 ? post.comments?.length : 0} comments */}
+                <FaComments className="inline-block ml-2 text-cyan-500" />
                 </button>
             </Link>
           </Message>

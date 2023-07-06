@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: "Poppins",
+        clash: "CLASH",
+        space: "Space Grotesk",
       },
     },
   },

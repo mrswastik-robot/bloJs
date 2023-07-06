@@ -15,6 +15,8 @@ import {
   setDoc
 } from "firebase/firestore";
 
+import Space from "../../public/figma_space.png";
+
 export default function Login() {
 
     const route = useRouter();
@@ -111,15 +113,33 @@ export default function Login() {
 
 
   return (
-    <div className="shadow-xl mt-32 p-10 text-gray-700 rounded-lg">
-      <h2 className="text-2xl font-medium">Join Today</h2>
-      <div className="py-4">
-        <h3 className="py-4">Sign in with one of the providers</h3>
-        <button onClick={GoogleLogin} className="text-white bg-gray-700 w-full font-medium rounded-lg flex align-middle p-4 gap-2">
-          <FcGoogle className="text-2xl" />
-          Sign in with Google
-        </button>
+    <div>
+      <img src={Space.src} className="absolute top-0 left-0 sm:w-[25rem] h-[50rem] md:h-full md:w-full sm:object-cover  overflow-hidden -z-10 bg-[#000419]" />
+
+      <div className="  items-center justify-center mt-[5rem]">
+        <h1 className=" font-clash text-white font-bold text-5xl text-center">Welcome to <span className=" font-poppins">blo<span className=" font-poppins text-cyan-500 italic">J</span>s</span></h1>
+
+        <div className=" font-space md:text-2xl mt-9">
+          <p>hey guys,</p>
+          <p>I understand the importance of fostering a sense of belonging, collaboration, and intellectual exchange. With this vision in mind, I have developed a blogging website that empowers students to share their thoughts, achievements, and experiences with fellow university members. This platform not only facilitates seamless communication but also enables users to connect through their social media handles, creating a vibrant and engaging community.</p>
+          <p className=" mt-7">Start exploring the features and benifits of bloJs by signing in with your google account.</p>
+        </div>
+        
       </div>
+
+      
+
+        <div className=" relative group mt-5">
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg blur opacity-80 group-hover:opacity-100 transition duration-200"></div>
+          <button onClick={GoogleLogin} className=" relative text-white bg-black w-full font-semibold font-clash rounded-lg flex align-middle p-4 gap-2">
+            <FcGoogle className="text-2xl" />
+            Sign in with Google
+          </button>
+
+        </div>
+        
+      
     </div>
+    
   );
 }

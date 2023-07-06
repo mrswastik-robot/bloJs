@@ -25,8 +25,8 @@ export default function Message({ children, avatar, username, description, user 
 
 
     return (
-      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200 `}>
-        <div className=' lg:flex lg:gap-[16rem] '>
+      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200 break-all overflow-y-hidden cursor-pointer`}>
+        <div className=' lg:flex lg:gap-[26rem] '>
 
           <div className="flex items-center gap-2">
             <img src={avatar} className="w-10 rounded-full" />
@@ -37,7 +37,7 @@ export default function Message({ children, avatar, username, description, user 
             
           </div>
 
-          <div className=' mt-3 text-xs text-opacity-40 font-extralight  sm:ml-5'>
+          <div className=' mt-3 text-xs text-opacity-40 font-extralight sm:ml-5'>
             <p>{formattedTimestamp}</p>
           </div>
 

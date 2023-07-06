@@ -27,7 +27,7 @@ export default function ProfileSection({
       </div>
 
 
-      <div className=" flex gap-x-[4rem] items-center justify-center my-7">
+      <div className=" md:flex md:gap-x-[4rem] md:items-center md:justify-center my-7 sm:flex-wrap sm:gap-y-4 sm:gap-x-2 ">
 
 
         {github != "" ? (
@@ -38,14 +38,14 @@ export default function ProfileSection({
               className=" flex items-center gap-2"
             >
               <ImGithub className=" text-2xl" />
-              <h1 className=" text-black">Github</h1>
+              <h1 className=" text-black hover:underline">Github</h1>
             </a>
           </Link>
         ) : (
           <Link href="/errorPage" passHref>
             <a className=" flex items-center gap-2">
               <ImGithub className=" text-2xl" />
-              <h1 className=" text-black">Github</h1>
+              <h1 className=" text-black hover:underline">Github</h1>
             </a>
           </Link>
         )}
@@ -60,14 +60,14 @@ export default function ProfileSection({
               className=" flex items-center gap-2"
             >
               <ImLinkedin className=" text-2xl" />
-              <h1 className=" text-black">Linkedin</h1>
+              <h1 className=" text-black hover:underline">Linkedin</h1>
             </a>
           </Link>
         ) : (
           <Link href="/errorPage" passHref>
             <a className=" flex items-center gap-2">
               <ImLinkedin className=" text-2xl" />
-              <h1 className=" text-black">Linkedin</h1>
+              <h1 className=" text-black hover:underline">Linkedin</h1>
             </a>
           </Link>
         )}
@@ -82,14 +82,14 @@ export default function ProfileSection({
               className=" flex items-center gap-2"
             >
               <ImInstagram className=" text-2xl" />
-              <h1 className=" text-black">Instagram</h1>
+              <h1 className=" text-black hover:underline">Instagram</h1>
             </a>
           </Link>
         ) : (
           <Link href="/errorPage" passHref>
             <a className=" flex items-center gap-2">
               <ImInstagram className=" text-2xl" />
-              <h1 className=" text-black">Instagram</h1>
+              <h1 className=" text-black hover:underline">Instagram</h1>
             </a>
           </Link>
         )}

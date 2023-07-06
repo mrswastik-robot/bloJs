@@ -34,12 +34,12 @@ function Nav()
 
             <ul className="flex items-center gap-10">
 
-            <AnimatedSvg
+            {user && <AnimatedSvg
           currentTheme={currentTheme}
           onClick={() =>
             currentTheme === "dark" ? setTheme("light") : setTheme("dark")
           }
-        />
+        />}
 
 
                 {/* {currentTheme === "dark" ? (

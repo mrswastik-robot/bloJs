@@ -109,7 +109,7 @@ export default function Post() {
 
 
   return (
-    <div className="my-20 p-12 shadow-lg rounded-lg max-w-md mx-auto">
+    <div className="my-20 p-11 shadow-lg rounded-lg dark:shadow-cyan-500 mx-auto">
       <form onSubmit={submitPost}>
         <h1 className="text-2xl font-bold">
           {post.hasOwnProperty("id") ? "Edit your Post" : "Create your post"}
@@ -141,15 +141,24 @@ export default function Post() {
 
 
           <h3 className="text-lg font-medium py-2">Description</h3>
-          <JoditEditor
-            ref={editor}
-            value={post.description}
-            // onChange={(e) => setPost({ ...post, description: e.target.value })}
-            onBlur={(newContent) =>
-              setPost({ ...post, description: newContent })
-            } // preferred to use only this option to update the content for performance reasons
-            className="bg-gray-800 h-48 w-full text-black rounded-lg p-2 text-sm"
-          ></JoditEditor>
+          <div className="bg-gray-800  w-full text-black rounded-lg p-2 text-sm">
+            <JoditEditor
+              ref={editor}
+              value={post.description}
+              // onChange={(e) => setPost({ ...post, description: e.target.value })}
+              onBlur={(newContent) =>
+                setPost({ ...post, description: newContent })
+              } // preferred to use only this option to update the content for performance reasons
+              
+              // config={{
+              //   height: 400,
+              // }}
+
+              
+            ></JoditEditor>
+
+          </div>
+          
           <p
             className={`text-cyan-600 font-medium text-sm ${
               post.description.length > 30000 ? "text-red-600" : ""

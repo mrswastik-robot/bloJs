@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 
+@font-face {
+  font-family: "CLASH";
+  src: url("../public/ClashGrotesk-Medium.otf");
+}
+
+
+
 html,
 body {
   padding: 0;
