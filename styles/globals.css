@@ -8,6 +8,17 @@
   src: url("../public/ClashGrotesk-Medium.otf");
 }
 
+@font-face {
+
+  font-family: "Hanson";
+  src: url("../public/Hanson-Bold.otf");
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../public/Satoshi-Regular.otf");
+}
+
 
 
 html,

@@ -34,22 +34,26 @@ const editProfile = () => {
       const docRef = doc(db, 'users', userBio.id);
       const updatedDoc = {...userBio, timestamp: serverTimestamp() };
       await updateDoc(docRef, updatedDoc);  
-      return route.push('/dashboard');
+      // return route.push('/dashboard');
     }
-  };
-
-  const handleLinks = async (e) => {
-    e.preventDefault();
 
     if(link?.hasOwnProperty("id"))
     {
-      const docRef = doc(db, 'users', link.id);
-      const updatedDoc = {...link, timestamp: serverTimestamp() };
-      await updateDoc(docRef, updatedDoc);  
-      return route.push('/dashboard');
+      const docRef2 = doc(db, 'users', link.id);
+      const updatedDoc2 = {...link, timestamp: serverTimestamp() };
+      await updateDoc(docRef2, updatedDoc2);  
+      // return route.push('/dashboard');
     }
+
+    return route.push('/dashboard');
+  };
+
+  // const handleLinks = async (e) => {
+  //   e.preventDefault();
+
     
-  }
+    
+  // }
 
 
   const checkUser = () => {
@@ -71,7 +75,8 @@ const editProfile = () => {
 
   return (
     <div>
-      <div className=' flex gap-2'>
+      <div>
+        <h1 className=' font-extrabold mt-2'>Bio :-</h1>
 
           <input
                 onChange={(e) => setUserBio({...userBio, bio: e.target.value})}
@@ -80,12 +85,12 @@ const editProfile = () => {
                 placeholder="Write your new Bio...😀"
                 className="bg-gray-800 w-full p-2 text-white text-sm"
               />
-              <button
+              {/* <button
                 onClick={submitBio}
                 className="bg-cyan-500 text-white py-2 px-4 text-sm"
               >
                 Submit
-              </button>
+              </button> */}
       </div>
 
       <div>
@@ -110,7 +115,7 @@ const editProfile = () => {
           />
 
           <button
-            onClick={handleLinks}
+            onClick={submitBio}
             type='submit'
             className="bg-cyan-500 text-white py-2 px-4 text-sm rounded-lg"
             >

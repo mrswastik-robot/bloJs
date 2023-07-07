@@ -39,10 +39,10 @@ export default function Home() {
       </Head>
 
       <div className="my-12 text-lg font-medium">
-        <h2 className=' font-space font-semibold mb-5'>See what other people are blogging about :-</h2>
+        <h2 className=' font-space font-semibold mb-5'>See what other's are blogging about :-</h2>
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
-            <Link href={{pathname: `/${post.id}` , query: {...post}}}>
+            <Link href={{pathname: `/${post.id}` , query: {...post, timestamp: post.timestamp?.toString() }}}>
               <button>
                 {/* {post.comments?.length > 0 ? post.comments?.length : 0} comments */}
                 <FaComments className="inline-block ml-2 text-cyan-500" />

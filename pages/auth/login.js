@@ -16,11 +16,14 @@ import {
 } from "firebase/firestore";
 
 import Space from "../../public/figma_space.png";
+import { useTheme } from "next-themes";
 
 export default function Login() {
 
     const route = useRouter();
     const [user, loading] = useAuthState(auth);
+
+    // const [theme, setTheme] = useTheme("light");
 
     const googleProvider = new  GoogleAuthProvider();
     const GoogleLogin = async() => {
@@ -114,12 +117,12 @@ export default function Login() {
 
   return (
     <div>
-      <img src={Space.src} className="absolute top-0 left-0 sm:w-[25rem] h-[50rem] md:h-full md:w-full sm:object-cover  overflow-hidden -z-10 bg-[#000419]" />
+      <img src={Space.src} className="absolute top-0 left-0 sm:w-[25rem] h-[55rem] md:h-full md:w-full sm:object-cover  overflow-hidden -z-10 bg-[#000419]" />
 
       <div className="  items-center justify-center mt-[5rem]">
-        <h1 className=" font-clash text-white font-bold text-5xl text-center">Welcome to <span className=" font-poppins">blo<span className=" font-poppins text-cyan-500 italic">J</span>s</span></h1>
+        <h1 className=" font-hanson text-white font-bold text-5xl text-center">Welcome to <span className=" font-poppins">blo<span className=" font-poppins text-cyan-500 italic">J</span>s</span></h1>
 
-        <div className=" font-space md:text-2xl mt-9">
+        <div className=" font-space md:text-2xl mt-9 text-white text-center">
           <p>hey guys,</p>
           <p>I understand the importance of fostering a sense of belonging, collaboration, and intellectual exchange. With this vision in mind, I have developed a blogging website that empowers students to share their thoughts, achievements, and experiences with fellow university members. This platform not only facilitates seamless communication but also enables users to connect through their social media handles, creating a vibrant and engaging community.</p>
           <p className=" mt-7">Start exploring the features and benifits of bloJs by signing in with your google account.</p>
@@ -131,7 +134,7 @@ export default function Login() {
 
         <div className=" relative group mt-5">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-lg blur opacity-80 group-hover:opacity-100 transition duration-200"></div>
-          <button onClick={GoogleLogin} className=" relative text-white bg-black w-full font-semibold font-clash rounded-lg flex align-middle p-4 gap-2">
+          <button onClick={GoogleLogin} className=" relative text-white bg-black w-full font-medium font-poppins rounded-lg flex align-middle p-4 gap-2">
             <FcGoogle className="text-2xl" />
             Sign in with Google
           </button>

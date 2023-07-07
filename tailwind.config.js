@@ -10,6 +10,8 @@ module.exports = {
         poppins: "Poppins",
         clash: "CLASH",
         space: "Space Grotesk",
+        hanson: "Hanson",
+        satoshi: "Satoshi",
       },
     },
   },

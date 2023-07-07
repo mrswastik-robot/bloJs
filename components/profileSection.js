@@ -20,14 +20,22 @@ export default function ProfileSection({
   return (
     <div className={` ${theme === 'dark' ? "dark:bg-[#d6ff0a] text-black" : "bg-white"} p-8 border-b-2 rounded-lg`}>
       {/* <h1>hilla hila re hulle hulle</h1> */}
-      <div className=" flex items-center justify-center gap-8">
-        <h1>{bio}</h1>
-        <img src={photoURL} className="w-15 rounded-full" />
-        <h2>{name}</h2>
+      <div className="  flex-wrap  grid lg:grid-cols-3 justify-items-center items-center justify-center mx-auto my-auto gap-8">
+        
+        <h1 className=" font-satoshi text-lg">{bio}</h1>
+
+        <div className=" justify-center items-center">
+          <img src={photoURL} className="w-15 rounded-full" />
+        </div>
+
+        <div>
+          <h2 className=" font-space font-bold text-3xl">{name}</h2>
+        </div>
+        
       </div>
 
 
-      <div className=" md:flex md:gap-x-[4rem] md:items-center md:justify-center my-7 sm:flex-wrap sm:gap-y-4 sm:gap-x-2 ">
+      <div className="  grid gap-x-[4rem] md:items-center md:justify-center my-7 gap-y-4 lg:grid-cols-3 lg:justify-items-center font-poppins ">
 
 
         {github != "" ? (
