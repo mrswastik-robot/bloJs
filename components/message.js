@@ -57,7 +57,7 @@ export default function Message({ children, avatar, username, description, user 
 
 
             <div className=' py-2 cursor-pointer'>
-              <img src={mainImage} className=" h-[13rem] w-[13rem] lg:h-[15rem] lg:w-[15rem] rounded-md" />
+              <img src={mainImage} className=" h-[13rem] w-[13rem] lg:h-[17rem] lg:w-[17rem] rounded-md" />
             </div>
 
 

@@ -122,7 +122,7 @@ export default function Login() {
       <div className="  items-center justify-center mt-[5rem]">
         <h1 className=" font-hanson text-white font-bold text-5xl text-center">Welcome to <span className=" font-poppins">blo<span className=" font-poppins text-cyan-500 italic">J</span>s</span></h1>
 
-        <div className=" font-space md:text-2xl mt-9 text-white text-center">
+        <div className=" font-space md:text-2xl mt-9 text-white text-balance text-center">
           <p>hey guys,</p>
           <p>I understand the importance of fostering a sense of belonging, collaboration, and intellectual exchange. With this vision in mind, I have developed a blogging website that empowers students to share their thoughts, achievements, and experiences with fellow university members. This platform not only facilitates seamless communication but also enables users to connect through their social media handles, creating a vibrant and engaging community.</p>
           <p className=" mt-7">Start exploring the features and benifits of bloJs by signing in with your google account.</p>

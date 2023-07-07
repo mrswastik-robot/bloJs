@@ -39,6 +39,7 @@ function Nav()
           onClick={() =>
             currentTheme === "dark" ? setTheme("light") : setTheme("dark")
           }
+
         />}
 
 

@@ -76,14 +76,14 @@ const editProfile = () => {
   return (
     <div>
       <div>
-        <h1 className=' font-extrabold mt-2'>Bio :-</h1>
+        <h1 className=' font-extrabold mt-2 font-clash'>Bio :-</h1>
 
           <input
                 onChange={(e) => setUserBio({...userBio, bio: e.target.value})}
                 type="text"
                 value={userBio.bio}
                 placeholder="Write your new Bio...😀"
-                className="bg-gray-800 w-full p-2 text-white text-sm"
+                className="bg-gray-800 w-full p-2 text-white text-sm rounded-lg"
               />
               {/* <button
                 onClick={submitBio}
@@ -94,7 +94,7 @@ const editProfile = () => {
       </div>
 
       <div>
-        <h1 className=' font-extrabold mt-2'>Links :-</h1>
+        <h1 className=' font-extrabold mt-2 font-clash'>Links :-</h1>
         <form className=' flex-col space-y-3 mt-2'>
           <input onChange={(e) => setLinks({...link, github: e.target.value})}
           className="bg-gray-800 w-full p-2 text-white text-sm rounded-lg"

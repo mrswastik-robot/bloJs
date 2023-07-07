@@ -81,7 +81,7 @@ export default function CommentSection(){
       {/* <Message {...routeData}></Message> */}
       <BlogContent {...routeData}></BlogContent>
 
-      <div className=" md:flex gap-2 mt-3 text-xl">
+      <div className=" md:flex gap-2 mt-5 text-xl">
         <p className=" font-clash">Liked it? See more from</p>
         <Link href={`/profilepage?user=${routeData.user}`}>
           <a className="text-blue-500 underline font-space">{routeData.username}</a>
