@@ -1,16 +1,24 @@
 import Head from 'next/head';
 import Message from '../components/message';
 import { useEffect , useState } from 'react';
-import {db} from "../utils/firebase";
+import {db, auth} from "../utils/firebase";
 import { collection, onSnapshot ,orderBy, query } from 'firebase/firestore';
 import Link from 'next/link';
+import {useRouter} from "next/router";
 import {FaComments} from 'react-icons/fa';
+
+
+import {useAuthState} from "react-firebase-hooks/auth";
+
 
 
 export default function Home() {
 
   //creating a state with all posts
   const[allPosts, setAllPosts] = useState([]);
+
+  const [user, loading] = useAuthState(auth);
+  const route = useRouter();
 
   const getPosts = async () => {
     const collectionRef = collection(db, "posts");
@@ -26,6 +34,14 @@ export default function Home() {
     getPosts();
   }, []);
 
+  useEffect(() => { 
+    if (!user){
+      route.push("/auth/login");
+    }
+  }, [user, loading]);
+
+
+
 
 
 
@@ -39,7 +55,7 @@ export default function Home() {
       </Head>
 
       <div className="my-12 text-lg font-medium">
-        <h2 className=' font-space font-semibold mb-5'>See what other's are blogging about :-</h2>
+        <h2 className=' font-hanson text-center mb-9'>Threads are stronger here. Start bloJing...</h2>
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
             <Link href={{pathname: `/${post.id}` , query: {...post, timestamp: post.timestamp?.toString() }}}>

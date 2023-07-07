@@ -83,7 +83,15 @@ export default function Dashboard() {
       </div>
      
       <h1 className=" my-5 font-semibold font-space ">Your Posts :</h1>
+
       <div>
+
+        {yourPosts.length === 0 && (
+          <div className="text-center text-gray-500 dark:text-gray-400 my-8">
+            <p>You haven&pos;t posted anything yet.</p>
+            </div>
+            )}
+
         {yourPosts.map((post) => {
           return (
             <Message {...post} key={post.id}>

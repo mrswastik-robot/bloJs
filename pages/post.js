@@ -1,7 +1,7 @@
 import { auth, db } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Router, { useRouter } from "next/router";
-import { useEffect, useState , useRef} from "react";
+import { useEffect, useState , useRef, useMemo} from "react";
 import {
   addDoc,
   collection,
@@ -40,7 +40,7 @@ export default function Post() {
       });
       return;  //yaha pr jabbhi error aa raha tab return krna jarrori isse ho ye raha ki submitpost fun. end ho jaa raha , return nhi krte to codeflow neeche collectionref ki taraf bhi jata aur firebase me collection tabbhi ban jata.(Watch at 1:19)
     }
-    if (post.description.length > 30000) {
+    if (post.description.length > 50000) {
       toast.error("Description too long 😅", {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 1500,
@@ -106,10 +106,51 @@ export default function Post() {
   });
 
 
+  const config = useMemo(() => ({
+    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+    height: 400,
+    toolbar: true,
+    toolbarAdaptive: true,
+    buttons: [
+      "source",
+      "|",
+      "bold",
+      "strikethrough",
+      "underline",
+      "italic",
+      "|",
+      "ul",
+      "ol",
+      "|",
+      "outdent",
+      "indent",
+      "|",
+      "font",
+      "fontsize",
+      "paragraph",
+      "|",
+      "image",
+      "video",
+      "table",
+      "link",
+      "|",
+      "align",
+      "undo",
+      "redo",
+      "hr",
+      "eraser",
+      "|",
+      "fullsize",
+      "print",
+    ],
+
+  }), []);
+
+
 
 
   return (
-    <div className="my-20 p-11 shadow-lg rounded-lg dark:shadow-cyan-500 mx-auto">
+    <div className="my-20 p-7 shadow-lg rounded-lg dark:shadow-cyan-500 mx-auto">
       <form onSubmit={submitPost}>
         <h1 className="text-2xl font-bold">
           {post.hasOwnProperty("id") ? "Edit your Post" : "Create your post"}
@@ -141,7 +182,7 @@ export default function Post() {
 
 
           <h3 className="text-lg font-medium py-2">Description</h3>
-          <div className="bg-gray-800  w-full text-black rounded-lg p-2 text-sm">
+          <div className="bg-gray-800  w-full text-black rounded-lg text-sm">
             <JoditEditor
               ref={editor}
               value={post.description}
@@ -150,21 +191,18 @@ export default function Post() {
                 setPost({ ...post, description: newContent })
               } // preferred to use only this option to update the content for performance reasons
               
-              // config={{
-              //   height: 400,
-              // }}
-
-              
+              config={config}
+      
             ></JoditEditor>
 
           </div>
           
           <p
             className={`text-cyan-600 font-medium text-sm ${
-              post.description.length > 30000 ? "text-red-600" : ""
+              post.description.length > 50000 ? "text-red-600" : ""
             }`}
           >
-            {post.description.length}/30000
+            {post.description.length}/50000
           </p>
         </div>
         <button type="submit"

@@ -26,7 +26,7 @@ export default function Message({ children, avatar, username, description, user 
 
     return (
       <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200 break-all overflow-y-hidden cursor-pointer`}>
-        <div className=' lg:flex lg:gap-[28rem] '>
+        <div className=' lg:flex lg:gap-[31rem] '>
 
           <div className="flex items-center gap-2">
             <img src={avatar} className="w-10 rounded-full" />
@@ -57,7 +57,7 @@ export default function Message({ children, avatar, username, description, user 
 
 
             <div className=' py-2 cursor-pointer'>
-              <img src={mainImage} className=" h-[13rem] w-[13rem] lg:h-[17rem] lg:w-[17rem] rounded-md" />
+              <img src={mainImage} className=" h-[15rem] w-[15rem] lg:h-[17rem] lg:w-[17rem] rounded-md" />
             </div>
 
 

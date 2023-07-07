@@ -70,7 +70,7 @@ export default function ProfilePage() {
 
       </ProfileSection>
 
-      <h1 className=' text-center my-4 font-semibold'>More from {name}</h1>
+      <h1 className=' text-center my-4 font-medium'>More from <span className=' font-semibold font-space'>{name}</span> :- </h1>
 
       {userPosts.map((post) => {
         return (

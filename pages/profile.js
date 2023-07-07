@@ -11,7 +11,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-const editProfile = () => {
+const EditProfile = () => {
 
   const route = useRouter();
   const routeData = route.query;
@@ -132,4 +132,4 @@ const editProfile = () => {
 
 }
 
-export default editProfile
+export default EditProfile
