@@ -25,7 +25,7 @@ export default function Message({ children, avatar, username, description, user 
 
 
     return (
-      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200 break-all overflow-y-hidden cursor-pointer`}>
+      <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200  overflow-y-hidden cursor-pointer`}>
         <div className=' lg:flex lg:gap-[31rem] '>
 
           <div className="flex items-center gap-2">
