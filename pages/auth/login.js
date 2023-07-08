@@ -15,8 +15,8 @@ import {
   setDoc
 } from "firebase/firestore";
 
-import Space from "../../public/figma_space.png";
-import { useTheme } from "next-themes";
+import Space from "../../public/figma_space_comp2.png";
+// import { useTheme } from "next-themes";
 
 export default function Login() {
 
