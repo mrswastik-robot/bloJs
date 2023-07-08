@@ -88,7 +88,7 @@ export default function Dashboard() {
 
         {yourPosts.length === 0 && (
           <div className="text-center text-gray-500 dark:text-gray-400 my-8">
-            <p>You haven&pos;t posted anything yet.</p>
+            <p>You haven't posted anything yet.</p>
             </div>
             )}
 
