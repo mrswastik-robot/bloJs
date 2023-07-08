@@ -1,7 +1,7 @@
 import Message from "../components/message";
 import { useState , useEffect } from "react";
 import { useRouter } from "next/router";
-import {auth , db} from "../utils/firebase";
+import {auth , db, getAuth} from "../utils/firebase";
 import {toast} from "react-toastify";
 import {
     arrayUnion,
@@ -16,13 +16,14 @@ import {
 
   import BlogContent from "../components/blogContent";
 import Link from "next/link";
+// import { a } from "react-spring";
 
 export default function CommentSection(){
 
     const router = useRouter();
     const routeData = router.query;
 
-    console.log(routeData);
+    // console.log(routeData);
     // console.log(routeData.timestamp);
 
     const [message, setMessage] = useState("");
@@ -42,6 +43,8 @@ export default function CommentSection(){
       });
       return;
     }
+
+    // const user = getAuth().currentUser;
     const docRef = doc(db, "posts", routeData.id);
     await updateDoc(docRef, {
       comments: arrayUnion({
@@ -49,6 +52,8 @@ export default function CommentSection(){
         avatar: auth.currentUser.photoURL,
         userName: auth.currentUser.displayName,
         time: Timestamp.now(),
+        // user: auth.currentUser.userUID,
+        user:  auth.currentUser.uid,
       }),
     });
     setMessage("");
@@ -106,16 +111,20 @@ export default function CommentSection(){
           </button>
         </div>
         <div className="py-6">
-          <h2 className="font-bold">Comments</h2>
+          <h2 className="font-bold font-poppins">Comments</h2>
           {allMessage?.map((message) => (
-            <div className=" p-4 my-4 border-2" key={message.time}>
+            <div className=" p-4 my-4 border-2 rounded-lg dark:border-cyan-500" key={message.time}>
               <div className="flex items-center gap-2 mb-4">
                 <img
                   className="w-10 rounded-full"
                   src={message.avatar}
                   alt=""
                 />
-                <h2>{message.userName}</h2>
+                {/* <h2>{message.userName}</h2> */}
+                <Link href={`/profilepage?user=${message.user}`}>   
+                  {/* //I want my user to go to the [profile].js page */}
+                  <h2 className=' font-semibold underline cursor-pointer font-space'>{message.userName}</h2>
+                </Link>
               </div>
               <h2>{message.message}</h2>
             </div>

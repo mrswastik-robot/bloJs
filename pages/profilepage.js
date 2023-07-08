@@ -72,6 +72,8 @@ export default function ProfilePage() {
 
       <h1 className=' text-center my-4 font-medium'>More from <span className=' font-semibold font-space'>{name}</span> :- </h1>
 
+      {userPosts.length === 0 && <div className=' text-center text-gray-500 dark:text-gray-400 my-9'>No posts yet</div>}
+
       {userPosts.map((post) => {
         return (
           <div key={post.id}>
