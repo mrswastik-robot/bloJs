@@ -27,7 +27,7 @@ function Nav()
 
 
     return(
-        <nav className="flex justify-between items-center py-10 sticky top-0 z-50  backdrop-blur-md ">
+        <nav className="flex justify-between items-center py-10 sticky top-0 z-50  backdrop-blur-sm ">
             <Link href="/">
                 <button className="text-xl font-bold ">blo<span className=" italic text-cyan-500 ">J</span>s</button>
             </Link>

@@ -26,9 +26,9 @@ export default function Message({ children, avatar, username, description, user 
 
     return (
       <div className={` ${theme === 'dark' ? 'dark:border-cyan-500 dark:hover:shadow-cyan-500 transform duration-200' : " "} p-8 border-b-2 rounded-lg mt-2 hover:shadow-2xl transform duration-200  overflow-y-hidden cursor-pointer`}>
-        <div className=' lg:flex lg:gap-[31rem] '>
+        <div className='  lg:flow-root '>
 
-          <div className="flex items-center gap-2">
+          <div className=" lg:float-left flex items-center gap-2">
             <img src={avatar} className="w-10 rounded-full" />
             <Link href={`/profilepage?user=${user}`}>   
             {/* //I want my user to go to the [profile].js page */}
@@ -37,7 +37,7 @@ export default function Message({ children, avatar, username, description, user 
             
           </div>
 
-          <div className=' mt-3 text-xs text-opacity-40 font-extralight '>
+          <div className=' mt-3 text-xs text-opacity-40 font-extralight lg:text-right lg:float-right '>
             <p>{formattedTimestamp}</p>
           </div>
 
