@@ -155,7 +155,7 @@ function Nav()
                         </Link>
                         <Link href="/dashboard">
                             <img
-                                className="w-12 rounded-full cursor-pointer"
+                                className="w-12 rounded-full cursor-pointer hover:ring-2 ring-cyan-500 "
                                 src={user.photoURL}
                                 />
                         </Link>
