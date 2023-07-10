@@ -1,17 +1,93 @@
 import Link from "next/link";
-import {auth} from "../utils/firebase";
+import {auth ,db} from "../utils/firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
 import AnimatedSvg from "./animatedSvg";
 
+import { useRouter } from "next/router";
+
+import {
+    addDoc,
+    collection,
+    doc,
+    serverTimestamp,
+    updateDoc,
+    getDoc,
+    getDocs,
+    setDoc
+  } from "firebase/firestore";
+
 
 function Nav()
 {
+    const route = useRouter();
     const [user , loading] = useAuthState(auth);
 
+    const googleProvider = new  GoogleAuthProvider();
+
+    const GoogleLogin = async() => {
+
+        try {
+
+            const result = await signInWithPopup(auth, googleProvider);
+            route.push("/");
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    };
+
+    useEffect(() => {
+
+        if(user){
+            route.push("/");
+        }else{console.log("Somethign went wrong...")}
+    }, [user]);
+
+
+    
+
+
+    useEffect(() => {
+      if (user) {
+        const createUserDocument = async () => {
+          const userRef = doc(db, "users", user.uid);
+          const docSnapshot = await getDoc(userRef);
+  
+          if (!docSnapshot.exists()) {
+            try {
+              await setDoc(userRef, {
+                uid: user.uid,
+                email: user.email,
+                name: user.displayName,
+                photoURL: user.photoURL,
+                bio: "Hey there! I am using bloJs...",
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+                github:"",
+                linkedin:"",
+                instagram:"",
+              });
+            } catch (error) {
+              console.error("Error creating user document:", error);
+            }
+          }
+        };
+  
+        createUserDocument();
+      }
+    }, [user]);
+
+
+
+
+    //theme stuff
     const [mounted, setMounted] = useState(false);
     const { systemTheme,theme, setTheme } = useTheme();
 
@@ -64,7 +140,9 @@ function Nav()
 
                 {!user && (
                 <Link href={"/auth/login"}>
-                    <a  className="py-2 px-4 text-sm bg-cyan-500 text-white rounded-lg font-medium ml-8">Join Now.</a>
+                    <a  className="py-2 px-4 text-sm bg-cyan-500 text-white rounded-lg font-medium ml-8">
+                        <button onClick={GoogleLogin}>Join Now.</button>
+                    </a>
                 </Link>
                 )}
 
