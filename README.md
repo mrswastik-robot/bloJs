@@ -1,11 +1,15 @@
 # bloJs
 
-Project Description: This is a web application developed using Next.js for the frontend and Firebase for the backend. The application allows users to [describe what the application does].
+![6  Sci-Fi Mockup](https://github.com/mrswastik-robot/bloJs/assets/107865087/24a9f769-0e2d-458b-abb9-f78a59b43fb3)
+
+
+Project Description: This is a web application developed using Next.js for the frontend and Firebase for the backend. The application allows users to sign in with their google id and create blogs , edit them , read other user's blog , can comment on other user's blog.
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
+
 - [Usage](#usage)
 - [Firebase Configuration](#firebase-configuration)
 - [Contributing](#contributing)
@@ -13,10 +17,10 @@ Project Description: This is a web application developed using Next.js for the f
 
 ## Features
 
-- [Feature 1]: [A Rich Text Editor where a user can do many operations while creating blogs like , applying bold , italics , underline , coloring the text , inserting a image or video or link or a table , writing in bullet points and some more stuff.]
-- [Feature 2]: [Once blog is posted , user can later edit or delete them as wanted.]
-- [Feature 3]: [Users can comment on other user's blog.]
-- [Feature 4]: [Each user will have his/her profile page where their social media handles and every blog written by him/her till date will be displayed and that profile page can be viewed by any other user.]
+- A Rich Text Editor where a user can do many operations while creating blogs like , applying bold , italics , underline , coloring the text , inserting a image or video or link or a table , writing in bullet points and some more stuff.
+- Once blog is posted , user can later edit or delete them as wanted.
+- Users can comment on other user's blog.
+- Each user will have his/her profile page where their social media handles and every blog written by him/her till date will be displayed and that profile page can be viewed by any other user.
 - ...
 
 ## Installation
