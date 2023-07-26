@@ -9,6 +9,7 @@ import {FaComments} from 'react-icons/fa';
 
 
 import {useAuthState} from "react-firebase-hooks/auth";
+import Loader from '../components/loader';
 
 
 
@@ -19,12 +20,14 @@ export default function Home() {
 
   const [user, loading] = useAuthState(auth);
   const route = useRouter();
+  const [isLoading , setIsLoading] = useState(true);
 
   const getPosts = async () => {
     const collectionRef = collection(db, "posts");
     const q = query(collectionRef, orderBy("timestamp", "desc"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       setAllPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setIsLoading(false);
     });
     return unsubscribe;
   };
@@ -38,9 +41,14 @@ export default function Home() {
     if (!user){
       route.push("/auth/login");
     }
+    
   }, [user, loading]);
 
-
+  if (isLoading) {
+    return (
+      <Loader />
+    );
+  }
 
 
 

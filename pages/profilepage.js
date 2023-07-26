@@ -5,6 +5,7 @@ import { doc, getDoc, where , collection, query, orderBy,getDocs} from "firebase
 
 import ProfileSection from '../components/profileSection';
 import Message from '../components/message';
+import Loader from '../components/loader';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -49,7 +50,7 @@ export default function ProfilePage() {
   }, [user]);
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const { github, linkedin, instagram, bio , name } = userData;

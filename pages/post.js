@@ -19,6 +19,8 @@ const JoditEditor = dynamic(() => import("jodit-react").then((mod) => mod.defaul
 
 import sanitizeHtml from "sanitize-html";
 
+import Loader from "../components/loader";
+
 export default function Post() {
   const [post, setPost] = useState({ description: "" , title: "", mainImage: "" });
   const [user, loading] = useAuthState(auth);
@@ -81,7 +83,7 @@ export default function Post() {
 
   //Checking for the user , agar logged in nhi aur direct /post pr jaane chaahe to redirect him to login first
   const checkUser = async() => {
-    if(loading) return;
+    if(loading) return <Loader/>;
     if(!user) route.push("/auth/login");
     
     //editing post
