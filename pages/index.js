@@ -44,6 +44,16 @@ export default function Home() {
     
   }, [user, loading]);
 
+  //using locomotive scroll
+  useEffect(() => {
+    (
+      async() => {
+        const LocomotiveScroll = (await import('locomotive-scroll')).default;
+        const locomotiveScroll = new LocomotiveScroll();
+      }
+    )()
+  }, []);
+
   if (isLoading) {
     return (
       <Loader />
